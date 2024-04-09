@@ -9,7 +9,11 @@ import           Foreign.C.Types
 
 import           Graphics.ImageMagick.MagickCore.Types.FFI.ChannelType
 
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 -- | ParseChannelOption() parses channel type string representation
 

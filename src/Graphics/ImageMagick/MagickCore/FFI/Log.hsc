@@ -7,7 +7,11 @@ module Graphics.ImageMagick.MagickCore.FFI.Log
 import           Foreign.C.String
 import           Foreign.C.Types
 import           Graphics.ImageMagick.MagickCore.Types.FFI.Log
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 
 -- | SetLogEventMask() accepts a list that determines which events to log.  All

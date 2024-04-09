@@ -5,7 +5,11 @@ module Graphics.ImageMagick.MagickCore.Types.FFI.PixelPacket
     where
 
 import           Foreign
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 data PixelPacket 
 

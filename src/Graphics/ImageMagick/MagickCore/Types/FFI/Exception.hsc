@@ -7,7 +7,11 @@ module Graphics.ImageMagick.MagickCore.Types.FFI.Exception
 
 import           Foreign.Storable
 import           Foreign.C.Types
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 newtype ExceptionType = ExceptionType { unExceptionType :: CInt }
                       deriving (Eq,Show,Storable)

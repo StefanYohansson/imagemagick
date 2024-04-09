@@ -4,7 +4,11 @@ module Graphics.ImageMagick.MagickCore.Types.FFI.Compress
     where
 
 import           Foreign.C.Types
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 newtype CompressionType = CompressionType { unCompressionType :: CInt }
     deriving (Eq, Show)

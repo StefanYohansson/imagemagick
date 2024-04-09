@@ -7,7 +7,11 @@ module Graphics.ImageMagick.MagickCore.FFI.Gem
 import           Foreign
 import           Foreign.C.Types
 import           Graphics.ImageMagick.MagickCore.Types.FFI.Types
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 foreign import ccall "ConvertHSBToRGB" convertHSBToRGB
   :: CDouble -> CDouble -> CDouble -> Ptr Quantum -> Ptr Quantum -> Ptr Quantum -> IO ()

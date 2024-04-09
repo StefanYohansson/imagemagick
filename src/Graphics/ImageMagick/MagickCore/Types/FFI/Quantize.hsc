@@ -9,7 +9,11 @@ import           Graphics.ImageMagick.MagickWand.FFI.Types (MagickBooleanType)
 import           Foreign.C.Types (CSize)
 import           Foreign.Storable
 
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 data QuantizeInfo = QuantizeInfo { numberOfColors :: CSize
                                  , treeDepth :: CSize

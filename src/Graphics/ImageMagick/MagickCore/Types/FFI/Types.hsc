@@ -6,7 +6,11 @@ module Graphics.ImageMagick.MagickCore.Types.FFI.Types
 
 import           Data.Int
 import           Data.Word
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 type MagickRealType   = #type MagickRealType
 type MagickStatusType = #type MagickStatusType

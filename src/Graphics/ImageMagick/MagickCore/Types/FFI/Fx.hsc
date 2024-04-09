@@ -6,7 +6,11 @@ module Graphics.ImageMagick.MagickCore.Types.FFI.Fx
     where
 
 import           Foreign.C.Types
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 newtype NoiseType = NoiseType { unNoiseType :: CInt }
           deriving (Eq, Show)

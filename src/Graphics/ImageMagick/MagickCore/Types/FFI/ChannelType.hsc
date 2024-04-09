@@ -4,7 +4,11 @@ module Graphics.ImageMagick.MagickCore.Types.FFI.ChannelType
   where
 
 import           Foreign.C.Types
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 newtype ChannelType = ChannelType { unChannelType :: CInt }
   deriving (Eq, Show)

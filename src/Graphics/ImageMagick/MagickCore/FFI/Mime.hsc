@@ -5,7 +5,11 @@ module Graphics.ImageMagick.MagickCore.FFI.Mime
     where
 
 import           Foreign.C.String
+#if __has_include(<MagickCore/MagickCore.h>)
+#include <MagickCore/MagickCore.h>
+#else
 #include <magick/MagickCore.h>
+#endif
 
 
 -- | MagickToMime() returns the officially registered (or de facto) MIME
