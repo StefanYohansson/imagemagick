@@ -16,10 +16,16 @@ type MagickRealType   = #type MagickRealType
 type MagickStatusType = #type MagickStatusType
 type MagickOffsetType = #type MagickOffsetType
 type MagickSizeType   = #type MagickSizeType
+#if !__has_include(<MagickCore/MagickCore.h>)
 type SignedQuantum    = #type SignedQuantum
+#else
+
+#endif
 type QuantumAny       = #type QuantumAny
 type Quantum          = #type Quantum
+#if !__has_include(<MagickCore/MagickCore.h>)
 type IndexPacket      = #type IndexPacket
+#endif
 
 magickEpsilon :: forall a. Fractional a => a
 magickEpsilon   = 1e-10 -- #const MagickEpsilon

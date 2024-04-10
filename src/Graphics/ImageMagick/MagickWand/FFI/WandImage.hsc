@@ -10,7 +10,11 @@ import           Foreign.C.Types
 import           Graphics.ImageMagick.MagickCore.Types
 import           Graphics.ImageMagick.MagickWand.FFI.Types
 
+#if __has_include(<MagickWand/MagickWand.h>)
+#include <MagickWand/MagickWand.h>
+#else
 #include <wand/MagickWand.h>
+#endif
 
 -- | MagickGetImageHeight() returns the image height.
 foreign import ccall "MagickGetImageHeight" magickGetImageHeight
@@ -575,7 +579,7 @@ foreign import ccall "MagickImportImagePixels" magickImportImagePixels
                     -- K = black, I = intensity (for grayscale), P = pad.
   -> StorageType    -- define the data type of the pixels. Float and double types are expected
                     -- to be normalized [0..1] otherwise [0..QuantumRange]. Choose from these
-                    -- types: CharPixel, ShortPixel, IntegerPixel, LongPixel, FloatPixel, or DoublePixel.
+                    -- types: CharPixel, ShortPixel, IntegerPixel (ImageMagick >7), LongPixel, LongLongPixel (ImageMagick <7), FloatPixel, or DoublePixel.
   -> Ptr ()         -- ^ This array of values contain the pixel components as defined by map and type.
                     -- You must preallocate this array where the expected length varies depending on
                     -- the values of width, height, map, and type
@@ -597,7 +601,7 @@ foreign import ccall "MagickExportImagePixels" magickExportImagePixels
                     -- K = black, I = intensity (for grayscale), P = pad.
   -> StorageType    -- define the data type of the pixels. Float and double types are expected
                     -- to be normalized [0..1] otherwise [0..QuantumRange]. Choose from these
-                    -- types: CharPixel, ShortPixel, IntegerPixel, LongPixel, FloatPixel, or DoublePixel.
+                    -- types: CharPixel, ShortPixel, IntegerPixel (ImageMagick >7), LongPixel, LongLongPixel (ImageMagick <7), FloatPixel, or DoublePixel.
   -> Ptr ()         -- ^ This array of values contain the pixel components as defined by map and type.
                     -- You must preallocate this array where the expected length varies depending on
                     -- the values of width, height, map, and type

@@ -17,7 +17,9 @@ import           Foreign.Storable
 
 data QuantizeInfo = QuantizeInfo { numberOfColors :: CSize
                                  , treeDepth :: CSize
+#if !__has_include(<MagickCore/MagickCore.h>)
                                  , shouldDither :: MagickBooleanType
+#endif
                                  , colorspace :: ColorspaceType
                                  , measureError :: MagickBooleanType
                                  , signature :: CSize
@@ -31,14 +33,18 @@ instance Storable QuantizeInfo where
   peek ptr      = do
     numberOfColors' <- (#peek QuantizeInfo, number_colors) ptr
     treeDepth'      <- (#peek QuantizeInfo, tree_depth) ptr
+#if !__has_include(<MagickCore/MagickCore.h>)
     shouldDither'   <- (#peek QuantizeInfo, dither) ptr
+#endif
     colorspace'     <- (#peek QuantizeInfo, colorspace) ptr
     measureError'   <- (#peek QuantizeInfo, measure_error) ptr
     signature'      <- (#peek QuantizeInfo, signature) ptr
     ditherMethod'   <- (#peek QuantizeInfo, dither_method) ptr
     return QuantizeInfo { numberOfColors = numberOfColors'
                         , treeDepth      = treeDepth'
+#if !__has_include(<MagickCore/MagickCore.h>)
                         , shouldDither   = shouldDither'
+#endif
                         , colorspace     = colorspace'
                         , measureError   = measureError'
                         , signature      = signature'

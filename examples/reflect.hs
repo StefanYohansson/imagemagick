@@ -34,7 +34,7 @@ main = withMagickWandGenesis $ do
   readImage mwg "gradient:white-black"
 
   -- Copy the gradient in to the alpha channel of the reflection image
-  compositeImage mwr mwg copyOpacityCompositeOp 0 0
+  compositeImage mwr mwg copyAlphaCompositeOp 0 0
 
   -- Add the reflection image to the wand which holds the original image
   addImage mw mwr

@@ -87,7 +87,7 @@ main = do
         mwc `readImage` "logo_mask.png"
         mwc `setImageMatte` False
 
-        compositeImage mw mwc copyOpacityCompositeOp 0 0
+        compositeImage mw mwc copyAlphaCompositeOp 0 0
 
         -- Annotate gets all the font information from the drawingwand
         -- but draws the text on the magickwand

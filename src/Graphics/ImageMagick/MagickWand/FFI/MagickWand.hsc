@@ -11,8 +11,11 @@ import           Foreign.C.Types
 import           Graphics.ImageMagick.MagickCore.Types
 import           Graphics.ImageMagick.MagickWand.FFI.Types
 
+#if __has_include(<MagickWand/MagickWand.h>)
+#include <MagickWand/MagickWand.h>
+#else
 #include <wand/MagickWand.h>
-
+#endif
 
 -- | MagickWandGenesis() initializes the MagickWand environment.
 foreign import ccall "MagickWandGenesis" magickWandGenesis

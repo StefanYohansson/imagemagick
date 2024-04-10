@@ -4,7 +4,11 @@
 module Graphics.ImageMagick.MagickWand.FFI.Types
   where
 
+#if __has_include(<MagickWand/MagickWand.h>)
+#include <MagickWand/MagickWand.h>
+#else
 #include <wand/MagickWand.h>
+#endif
 
 import Control.Monad
 
@@ -85,6 +89,7 @@ newtype OrientationType = OrientationType { unOrientationType :: CInt }
  , leftBottomOrientation = LeftBottomOrientation
 }
 
+#if !__has_include(<MagickWand/MagickWand.h>)
 data MagickPixelPacket 
 
 instance Storable MagickPixelPacket where
@@ -108,4 +113,5 @@ setPixelRed   = #poke MagickPixelPacket, red
 setPixelGreen = #poke MagickPixelPacket, green
 setPixelBlue  = #poke MagickPixelPacket, blue
 setPixelIndex = #poke MagickPixelPacket, index
+#endif
 

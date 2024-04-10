@@ -20,10 +20,13 @@ newtype AlphaChannelType = AlphaChannelType { unAlphaChannelType :: CInt }
   , deactivateAlphaChannel = DeactivateAlphaChannel
   , extractAlphaChannel = ExtractAlphaChannel
   , opaqueAlphaChannel = OpaqueAlphaChannel
-  , resetAlphaChannel = ResetAlphaChannel  /* deprecated */
   , setAlphaChannel = SetAlphaChannel
   , shapeAlphaChannel = ShapeAlphaChannel
   , transparentAlphaChannel = TransparentAlphaChannel
-  , lattenAlphaChannel = FlattenAlphaChannel
   , removeAlphaChannel = RemoveAlphaChannel
+#if !__has_include(<MagickCore/MagickCore.h>)
+  , resetAlphaChannel = ResetAlphaChannel  /* deprecated */
+  , lattenAlphaChannel = FlattenAlphaChannel /* keep for compatibility */
+  , flattenAlphaChannel = FlattenAlphaChannel /* added to fix typo */
+#endif
 }

@@ -16,13 +16,21 @@ newtype ImageType = ImageType { unImageType :: CInt }
   , undefinedType = UndefinedType
   , bilevelType = BilevelType
   , grayscaleType = GrayscaleType
-  , grayscaleMatteType = GrayscaleMatteType
   , paletteType = PaletteType
-  , paletteMatteType = PaletteMatteType
   , trueColorType = TrueColorType
-  , trueColorMatteType = TrueColorMatteType
-  , colorSeparationType = ColorSeparationType
-  , colorSeparationMatteType = ColorSeparationMatteType
   , optimizeType = OptimizeType
+  , colorSeparationType = ColorSeparationType
+#if !__has_include(<MagickCore/MagickCore.h>)
+  , trueColorMatteType = TrueColorMatteType
+  , paletteMatteType = PaletteMatteType
+  , grayscaleMatteType = GrayscaleMatteType
+  , colorSeparationMatteType = ColorSeparationMatteType
   , paletteBilevelMatteType = PaletteBilevelMatteType
+#else
+  , trueColorAlphaType = TrueColorAlphaType
+  , paletteAlphaType = PaletteAlphaType
+  , grayscaleAlphaType = GrayscaleAlphaType
+  , colorSeparationAlphaType = ColorSeparationAlphaType
+  , paletteBilevelAlphaType = PaletteBilevelAlphaType
+#endif
 }

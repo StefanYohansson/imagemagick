@@ -17,7 +17,6 @@ newtype VirtualPixelMethod = VirtualPixelMethod { unVirtualPixelMethod :: CInt }
 #{enum VirtualPixelMethod, VirtualPixelMethod,
     undefinedVirtualPixelMethod = UndefinedVirtualPixelMethod,
     backgroundVirtualPixelMethod = BackgroundVirtualPixelMethod,
-    constantVirtualPixelMethod = ConstantVirtualPixelMethod,
     ditherVirtualPixelMethod = DitherVirtualPixelMethod,
     edgeVirtualPixelMethod = EdgeVirtualPixelMethod,
     mirrorVirtualPixelMethod = MirrorVirtualPixelMethod,
@@ -33,4 +32,7 @@ newtype VirtualPixelMethod = VirtualPixelMethod { unVirtualPixelMethod :: CInt }
     horizontalTileEdgeVirtualPixelMethod = HorizontalTileEdgeVirtualPixelMethod,
     verticalTileEdgeVirtualPixelMethod = VerticalTileEdgeVirtualPixelMethod,
     checkerTileVirtualPixelMethod = CheckerTileVirtualPixelMethod
+#if !__has_include(<MagickCore/MagickCore.h>)
+    , constantVirtualPixelMethod = ConstantVirtualPixelMethod
+#endif
 }

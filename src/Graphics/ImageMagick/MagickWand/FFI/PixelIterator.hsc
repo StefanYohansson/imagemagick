@@ -11,7 +11,11 @@ import           Foreign.C.Types
 import           Graphics.ImageMagick.MagickCore.Types
 import           Graphics.ImageMagick.MagickWand.FFI.Types
 
+#if __has_include(<MagickWand/MagickWand.h>)
+#include <MagickWand/MagickWand.h>
+#else
 #include <wand/MagickWand.h>
+#endif
 
 -- | ClearPixelIterator() clear resources associated with a PixelIterator.
 foreign import ccall "ClearPixelIterator" clearPixelIterator

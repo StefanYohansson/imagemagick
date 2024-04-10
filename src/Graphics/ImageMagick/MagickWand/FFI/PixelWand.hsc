@@ -11,7 +11,11 @@ import           Foreign.C.Types
 import           Graphics.ImageMagick.MagickCore.Types
 import           Graphics.ImageMagick.MagickWand.FFI.Types
 
+#if __has_include(<MagickWand/MagickWand.h>)
+#include <MagickWand/MagickWand.h>
+#else
 #include <wand/MagickWand.h>
+#endif
 
 -- | DestroyPixelWand() deallocates resources associated with a PixelWand.
 
@@ -24,13 +28,25 @@ foreign import ccall "DestroyPixelWands" destroyPixelWands
 foreign import ccall "IsPixelWand" isPixelWand
   :: Ptr PixelWand -> IO MagickBooleanType
 
+#if !__has_include(<MagickWand/MagickWand.h>)
 -- | PixelGetMagickColor() gets the magick color of the pixel wand.
 foreign import ccall "PixelGetMagickColor" pixelGetMagickColor
   :: Ptr PixelWand -> Ptr MagickPixelPacket -> IO ()
+#else
+-- | PixelGetMagickColor() gets the magick color of the pixel wand.
+foreign import ccall "PixelGetMagickColor" pixelGetMagickColor
+  :: Ptr PixelWand -> Ptr PixelPacket -> IO ()
+#endif
 
+#if !__has_include(<MagickWand/MagickWand.h>)
 -- | PixelSetMagickColor() sets the color of the pixel wand.
 foreign import ccall "PixelSetMagickColor" pixelSetMagickColor
   :: Ptr PixelWand -> Ptr MagickPixelPacket -> IO ()
+#else
+-- | PixelSetMagickColor() sets the color of the pixel wand.
+foreign import ccall "PixelSetMagickColor" pixelSetMagickColor
+  :: Ptr PixelWand -> Ptr PixelPacket -> IO ()
+#endif
 
 foreign import ccall "ClearPixelWand" clearPixelWand
   :: Ptr PixelWand -> IO ()
@@ -240,14 +256,15 @@ foreign import ccall "PixelSetColorFromWand" pixelSetColorFromWand
   :: Ptr PixelWand -> Ptr PixelWand -> IO ()
 
 
+#if !__has_include(<MagickWand/MagickWand.h>)
 -- | PixelGetIndex() returns the colormap index from the pixel wand.
 foreign import ccall "PixelGetIndex" pixelGetIndex
   :: Ptr PixelWand -> IO IndexPacket
 
-
 -- | PixelSetIndex() sets the colormap index of the pixel wand.
 foreign import ccall "PixelSetColor" pixelSetIndex
   :: Ptr PixelWand -> IndexPacket -> IO ()
+#endif
 
 -- | PixelGetQuantumColor() gets the color of the pixel wand as a PixelPacket.
 foreign import ccall "PixelGetQuantumColor" pixelGetQuantumColor

@@ -14,13 +14,18 @@ import           Foreign.C.Types
 newtype StorageType = StorageType { unStorageType :: CInt }
           deriving (Eq, Show)
 
+
 #{enum StorageType, StorageType
   , undefinedPixel = UndefinedPixel
   , charPixel = CharPixel
   , doublePixel = DoublePixel
   , floatPixel = FloatPixel
-  , integerPixel = IntegerPixel
   , longPixel = LongPixel
   , quantumPixel = QuantumPixel
   , shortPixel = ShortPixel
+#if !__has_include(<MagickCore/MagickCore.h>)
+  , integerPixel = IntegerPixel
+# else
+  , longLongPixel = LongLongPixel
+#endif
 }

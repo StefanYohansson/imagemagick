@@ -26,7 +26,9 @@ newtype GravityType = GravityType { unGravityType :: CInt }
   , southWestGravity = SouthWestGravity
   , southGravity = SouthGravity
   , southEastGravity = SouthEastGravity
+#if !__has_include(<MagickCore/MagickCore.h>)
   , staticGravity = StaticGravity
+#endif
 }
 
 undefinedGravity :: GravityType

@@ -34,10 +34,12 @@ newtype ColorspaceType = ColorspaceType { unColorspaceType :: CInt }
   hsbColorspace =   HSBColorspace,
   hslColorspace =   HSLColorspace,
   hwbColorspace =   HWBColorspace,
-  rec601LumaColorspace =   Rec601LumaColorspace,
   rec601YCbCrColorspace =   Rec601YCbCrColorspace,
-  rec709LumaColorspace =   Rec709LumaColorspace,
   rec709YCbCrColorspace =   Rec709YCbCrColorspace,
   logColorspace =   LogColorspace,
   cmyColorspace = CMYColorspace
+#if !__has_include(<MagickCore/MagickCore.h>)
+  , rec601LumaColorspace =   Rec601LumaColorspace
+  , rec709LumaColorspace =   Rec709LumaColorspace
+#endif
 }

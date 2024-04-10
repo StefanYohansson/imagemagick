@@ -30,7 +30,6 @@ newtype CompositeOperator = CompositeOperator { unCompositeOperator :: CInt }
    copyCyanCompositeOp =  CopyCyanCompositeOp,
    copyGreenCompositeOp =  CopyGreenCompositeOp,
    copyMagentaCompositeOp =  CopyMagentaCompositeOp,
-   copyOpacityCompositeOp =  CopyOpacityCompositeOp,
    copyRedCompositeOp =  CopyRedCompositeOp,
    copyYellowCompositeOp =  CopyYellowCompositeOp,
    darkenCompositeOp =  DarkenCompositeOp,
@@ -81,5 +80,9 @@ newtype CompositeOperator = CompositeOperator { unCompositeOperator :: CInt }
    minusSrcCompositeOp =  MinusSrcCompositeOp,
    darkenIntensityCompositeOp =  DarkenIntensityCompositeOp,
    lightenIntensityCompositeOp = LightenIntensityCompositeOp
-} 
-
+#if !__has_include(<MagickCore/MagickCore.h>)
+   , copyOpacityCompositeOp =  CopyOpacityCompositeOp
+#else
+   , copyAlphaCompositeOp =  CopyAlphaCompositeOp
+#endif
+}

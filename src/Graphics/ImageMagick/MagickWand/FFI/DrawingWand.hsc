@@ -10,7 +10,11 @@ import           Foreign.C.Types
 import           Graphics.ImageMagick.MagickCore.Types
 import           Graphics.ImageMagick.MagickWand.FFI.Types
 
+#if __has_include(<MagickWand/MagickWand.h>)
+#include <MagickWand/MagickWand.h>
+#else
 #include <wand/MagickWand.h>
+#endif
 
 -- | NewDrawingWand() returns a drawing wand required for all other methods in the API.
 foreign import ccall "NewDrawingWand" newDrawingWand

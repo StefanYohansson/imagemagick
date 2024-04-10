@@ -24,7 +24,6 @@ newtype ChannelType = ChannelType { unChannelType :: CInt }
  , yellowChannel = YellowChannel
  , alphaChannel = AlphaChannel
  , opacityChannel = OpacityChannel
- , matteChannel = MatteChannel 
  , blackChannel = BlackChannel
  , indexChannel = IndexChannel
  , compositeChannels = CompositeChannels
@@ -34,4 +33,7 @@ newtype ChannelType = ChannelType { unChannelType :: CInt }
  , grayChannels = GrayChannels
  , syncChannels = SyncChannels
  , defaultChannels = DefaultChannels
+#if !__has_include(<MagickCore/MagickCore.h>)
+ , matteChannel = MatteChannel
+#endif
 }
